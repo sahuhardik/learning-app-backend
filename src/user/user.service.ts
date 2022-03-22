@@ -1,5 +1,5 @@
 // src/user/user.service.ts
-import { Model, FilterQuery, CreateQuery } from 'mongoose';
+import { Model, FilterQuery } from 'mongoose';
 import { Injectable, Inject } from '@nestjs/common';
 import { User } from './user.schema';
 
@@ -10,8 +10,8 @@ export class UserService {
     private userModel: Model<User>,
   ) {}
 
-  async create(input: CreateQuery<User>): Promise<User> {
-    return this.userModel.create(input);
+  async create(): Promise<User> {
+    return this.userModel.create({});
   }
 
   async findOne(query: FilterQuery<User>): Promise<User> {

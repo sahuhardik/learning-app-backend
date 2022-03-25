@@ -2,22 +2,30 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
+type Course {
+  id: Float!
   name: String!
-  email: String!
-  age: Float!
+  description: String!
+  mentor: Float!
+  havingVideos: Boolean!
+  isLiveCourse: Boolean!
+  basePrice: Float!
 }
 
 type Query {
-  users: [User!]!
+  find: [Course!]!
 }
 
 type Mutation {
-  createUser(input: CreateUserInput!): User!
+  createCourse(input: CreateCoursesInput!): Course!
 }
 
-input CreateUserInput {
+input CreateCoursesInput {
+  id: Int!
   name: String!
-  email: String!
-  age: Float!
+  description: String!
+  mentor: Float!
+  havingVideos: Boolean!
+  isLiveCourse: Boolean!
+  basePrice: Float!
 }

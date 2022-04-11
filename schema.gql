@@ -12,12 +12,127 @@ type Course {
   basePrice: Float!
 }
 
+type Podcast {
+  id: String!
+  status: PodcastStatus!
+  title: String!
+  description: String!
+  image: String!
+  audio: String!
+  video: String!
+  duration: Int!
+}
+
+"""All Podcast Status"""
+enum PodcastStatus {
+  DRAFT
+  LIVE
+}
+
+type Dictionary {
+  id: String!
+  status: DictionaryStatus!
+  keyword: String!
+  definition: String!
+  image: String!
+  explanation: String!
+}
+
+"""All Dictionary Status"""
+enum DictionaryStatus {
+  DRAFT
+  LIVE
+}
+
+type CaseStudy {
+  id: String!
+  status: CaseStudyStatus!
+  title: String!
+  description: String!
+  image: String!
+  link: String!
+}
+
+"""All Case Study Status"""
+enum CaseStudyStatus {
+  DRAFT
+  LIVE
+}
+
+type SelfLearning {
+  id: String!
+  topic: String!
+  description: String!
+  image: String!
+  videoId: Float!
+  explanation: String!
+  quizId: String!
+}
+
+type Subscription {
+  qibs: String!
+  Nii: String!
+  retail: String!
+  total: String!
+}
+
+type Ipo {
+  id: String!
+  logo: String!
+  company: String!
+  open_date: DateTime!
+  close_date: DateTime!
+  date_format: String!
+  issue_price: String!
+  ipo_size: Int!
+  lot_size: Int!
+  gmp: Int!
+  allotment_date: DateTime!
+  listing_date: DateTime!
+  listing_price: String!
+  listing_gains: String!
+  cmp: String!
+  subscriptions: Subscription!
+  about: String!
+  review: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
   find: [Course!]!
+  podcastList: [Podcast!]!
+  podcast(id: String!): Podcast!
+  dictionaryList: [Dictionary!]!
+  dictionary(id: String!): Dictionary!
+  caseStudyList: [CaseStudy!]!
+  caseStudy(id: String!): CaseStudy!
+  selfLearningList: [SelfLearning!]!
+  selfLearning(id: String!): SelfLearning!
+  ipoList: [Ipo!]!
+  ipo(id: String!): Ipo!
 }
 
 type Mutation {
   createCourse(input: CreateCoursesInput!): Course!
+  createPodcast(createPodcastInput: CreatePodcastInput!): Podcast!
+  updatePodcast(updatePodcastInput: UpdatePodcastInput!): Podcast!
+  removePodcast(id: String!): Podcast!
+  createDictionary(createDictionaryInput: CreateDictionaryInput!): Dictionary!
+  updateDictionary(updateDictionaryInput: UpdateDictionaryInput!): Dictionary!
+  removeDictionary(id: String!): Dictionary!
+  createCaseStudy(createCaseStudyInput: CreateCaseStudyInput!): CaseStudy!
+  updateCaseStudy(updateCaseStudyInput: UpdateCaseStudyInput!): CaseStudy!
+  removeCaseStudy(id: String!): CaseStudy!
+  createSelfLearning(createSelfLearningInput: CreateSelfLearningInput!): SelfLearning!
+  updateSelfLearning(updateSelfLearningInput: UpdateSelfLearningInput!): SelfLearning!
+  removeSelfLearning(id: String!): SelfLearning!
+  createIpo(createIpoInput: CreateIpoInput!): Ipo!
+  updateIpo(updateIpoInput: UpdateIpoInput!): Ipo!
+  removeIpo(id: String!): Ipo!
 }
 
 input CreateCoursesInput {
@@ -28,4 +143,126 @@ input CreateCoursesInput {
   havingVideos: Boolean!
   isLiveCourse: Boolean!
   basePrice: Float!
+}
+
+input CreatePodcastInput {
+  status: PodcastStatus!
+  title: String!
+  description: String!
+  image: String!
+  audio: String!
+  video: String!
+  duration: Int!
+}
+
+input UpdatePodcastInput {
+  status: PodcastStatus
+  title: String
+  description: String
+  image: String
+  audio: String
+  video: String
+  duration: Int
+  id: String!
+}
+
+input CreateDictionaryInput {
+  status: DictionaryStatus!
+  keyword: String!
+  definition: String!
+  image: String!
+  explanation: String!
+}
+
+input UpdateDictionaryInput {
+  status: DictionaryStatus
+  keyword: String
+  definition: String
+  image: String
+  explanation: String
+  id: String!
+}
+
+input CreateCaseStudyInput {
+  status: CaseStudyStatus!
+  title: String!
+  description: String!
+  image: String!
+  link: String!
+}
+
+input UpdateCaseStudyInput {
+  status: CaseStudyStatus
+  title: String
+  description: String
+  image: String
+  link: String
+  id: String!
+}
+
+input CreateSelfLearningInput {
+  topic: String!
+  description: String!
+  image: String!
+  videoId: Int!
+  explanation: String!
+  quizId: String!
+}
+
+input UpdateSelfLearningInput {
+  topic: String
+  description: String
+  image: String
+  videoId: Int
+  explanation: String
+  quizId: String
+  id: String!
+}
+
+input CreateIpoInput {
+  logo: String!
+  company: String!
+  open_date: DateTime!
+  close_date: DateTime!
+  date_format: String!
+  issue_price: String!
+  ipo_size: Int!
+  lot_size: Int!
+  gmp: Int!
+  allotment_date: DateTime!
+  listing_date: DateTime!
+  listing_price: String!
+  listing_gains: String!
+  cmp: String!
+  subscriptions: Subscriptions!
+  about: String!
+  review: String!
+}
+
+input Subscriptions {
+  qibs: String!
+  Nii: String!
+  retail: String!
+  total: String!
+}
+
+input UpdateIpoInput {
+  logo: String
+  company: String
+  open_date: DateTime
+  close_date: DateTime
+  date_format: String
+  issue_price: String
+  ipo_size: Int
+  lot_size: Int
+  gmp: Int
+  allotment_date: DateTime
+  listing_date: DateTime
+  listing_price: String
+  listing_gains: String
+  cmp: String
+  subscriptions: Subscriptions
+  about: String
+  review: String
+  id: String!
 }

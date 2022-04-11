@@ -1,5 +1,5 @@
 {
-  "name": "Learning App Backend",
+  "name": "learning-app-backend",
   "version": "0.0.1",
   "description": "This is the initial repo for handling backend stuffs, we will break it into multiple services in future if required.",
   "author": "Hardik Sahu",
